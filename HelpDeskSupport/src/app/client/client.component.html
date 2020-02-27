@@ -1,0 +1,36 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <h1>Client</h1> <span class="menu-spacer"></span>
+        <div>
+            <a mat-button [routerLink]="'/issuesToManage'">Create Issues</a>
+            <a mat-button (click)="logOut()">Log Out </a>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<div style="text-align: center;">
+    <table mat-table [dataSource]="issues" class="mat-elevation-z8" style="width: 80%; align-self: center;">
+
+        <ng-container matColumnDef="reportNumber">
+            <th mat-header-cell *matHeaderCellDef> Report Number </th>
+            <td mat-cell *matCellDef="let issue"> {{issue.reportNumber}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef> Description </th>
+            <td mat-cell *matCellDef="let issue"> {{issue.description}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="details">
+            <th mat-header-cell *matHeaderCellDef> Details </th>
+            <td mat-cell *matCellDef="let issue">
+                <button mat-stroked-button color="accent" class="btn-block" (click)="openIssue(issue.reportNumber)">See
+                    details</button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+</div>

@@ -1,0 +1,52 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <h1>Supervisor</h1> <span class="menu-spacer"></span>
+      <div> <a mat-button [routerLink]="'/addMember'">Add Member </a>
+        <a mat-button [routerLink]="'/issuesToAssign'">Assign Supporters </a>
+        <a mat-button [routerLink]="'/issuesToManage'">Manage Issues </a>
+        <a mat-button (click)="logOut()">Log Out </a>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+
+<div class="centered-box" style="text-align: center;">
+    <h3>Create a new User</h3>
+    <br>
+
+    <div class="input-section">
+        <input matInput [(ngModel)]="userName" placeholder="Name">
+    </div>
+
+    <div class="input-section">
+        <input matInput [(ngModel)]="userSurname1" placeholder="First surname">
+    </div>
+
+    <div class="input-section">
+        <input matInput [(ngModel)]="userSurname2" placeholder="Second surname">
+    </div>
+
+    <div class="input-section">
+        <input matInput [(ngModel)]="email" placeholder="email" type="email">
+    </div>
+
+    <div class="input-section">
+        <input matInput [(ngModel)]="password" placeholder="password" type="password">
+    </div>
+
+    <mat-slide-toggle (change)="onIsSuppervisorChange()" class="input-section" checked="isSupervisor">Is Supervisor?</mat-slide-toggle>
+    <br>
+
+    <ng-template [ngIf]="isSupervisor" [ngIfElse]="isSupporter">
+
+    </ng-template>
+
+    <ng-template #isSupporter>
+        <mat-slide-toggle (change)="televisionChange()">Television</mat-slide-toggle>
+        <mat-slide-toggle (change)="mobileChange()">Mobile phone</mat-slide-toggle>
+        <mat-slide-toggle (change)="internetChange()">Internet</mat-slide-toggle>
+    </ng-template>
+    <br>
+    <button mat-stroked-button color="accent" class="btn-block" (click)="register()">Done</button>
+
+</div>
